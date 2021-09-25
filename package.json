@@ -9,7 +9,8 @@
     "disjoint-set",
     "union-find",
     "merge-find",
-    "edit-distance"
+    "edit-distance",
+    "levenshtein"
   ],
   "homepage": "https://github.com/peterthehan/group-similar",
   "bugs": {
@@ -50,7 +51,7 @@
   },
   "main": "./dist/index.js",
   "files": [
-    "src/**"
+    "dist/**"
   ],
   "scripts": {
     "build": "rm -rf ./dist && npx tsc",
