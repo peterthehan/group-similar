@@ -1,7 +1,7 @@
 import { distance } from "fastest-levenshtein";
 import { groupSimilar } from "../src/index";
 
-function testMapper<T>(i: T): T {
+function identityMapper<T>(i: T): T {
   return i;
 }
 
@@ -29,7 +29,7 @@ describe("groupSimilar function", () => {
       [],
       {
         items: [],
-        mapper: testMapper,
+        mapper: identityMapper,
         similarityFunction: equalitySimilarityFunction,
         similarityThreshold: 1,
       },
@@ -38,7 +38,7 @@ describe("groupSimilar function", () => {
       [["a"]],
       {
         items: ["a"],
-        mapper: testMapper,
+        mapper: identityMapper,
         similarityFunction: equalitySimilarityFunction,
         similarityThreshold: 1,
       },
@@ -47,7 +47,7 @@ describe("groupSimilar function", () => {
       [["a", "a"], ["b"]],
       {
         items: ["a", "b", "a"],
-        mapper: testMapper,
+        mapper: identityMapper,
         similarityFunction: equalitySimilarityFunction,
         similarityThreshold: 1,
       },
@@ -56,7 +56,7 @@ describe("groupSimilar function", () => {
       [["cat", "bat"], ["kitten", "sitting"], ["dog"]],
       {
         items: ["cat", "bat", "kitten", "dog", "sitting"],
-        mapper: testMapper,
+        mapper: identityMapper,
         similarityFunction: levenshteinSimilarityFunction,
         similarityThreshold: 0.5,
       },
@@ -73,7 +73,7 @@ describe("groupSimilar function", () => {
       ],
       {
         items: [1, 5, 10, 0, 2, 123],
-        mapper: testMapper,
+        mapper: identityMapper,
         similarityFunction: evenOddSimilarityFunction,
         similarityThreshold: 1,
       },
