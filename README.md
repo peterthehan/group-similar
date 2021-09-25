@@ -12,6 +12,10 @@ npm i group-similar
 
 ## Examples
 
+<details open>
+
+<summary>Group similar strings</summary>
+
 ```ts
 import { groupSimilar } from "group-similar";
 import { distance } from "fastest-levenshtein";
@@ -32,9 +36,11 @@ groupSimilar({
 // [ [ 'cat', 'bat' ], [ 'kitten', 'sitting' ], [ 'dog' ] ]
 ```
 
+</details>
+
 <details>
 
-<summary>Grouping numbers</summary>
+<summary>Group similar numbers</summary>
 
 ```ts
 import { groupSimilar } from "group-similar";
@@ -57,7 +63,7 @@ groupSimilar({
 
 <details>
 
-<summary>Grouping objects</summary>
+<summary>Group similar objects</summary>
 
 ```ts
 import { groupSimilar } from "group-similar";
@@ -103,15 +109,15 @@ groupSimilar(options);
 
 ### Parameters
 
-| Parameter           | Type   | Required | Default | Description                       |
-| ------------------- | ------ | -------- | ------- | --------------------------------- |
-| [options](#options) | Object | Yes      | _none_  | Arguments to pass to the function |
+| Parameter           | Type     | Required | Default | Description                       |
+| ------------------- | -------- | -------- | ------- | --------------------------------- |
+| [options](#options) | `Object` | Yes      | _none_  | Arguments to pass to the function |
 
 #### Options
 
-| Parameter           | Type                     | Required | Default | Description                                                   |
-| ------------------- | ------------------------ | -------- | ------- | ------------------------------------------------------------- |
-| items               | `T[]`                    | Yes      | _none_  | List of items                                                 |
-| mapper              | `(t: T) => K`            | Yes      | _none_  | Function to apply to each element in items                    |
-| similarityFunction  | `(a: K, b: K) => number` | Yes      | _none_  | Function to compare mapped items                              |
-| similarityThreshold | `number`                 | Yes      | _none_  | Similar items that exceed this threshold are grouped together |
+| Parameter           | Type                     | Required | Default | Description                                                                        |
+| ------------------- | ------------------------ | -------- | ------- | ---------------------------------------------------------------------------------- |
+| items               | `T[]`                    | Yes      | _none_  | List of items                                                                      |
+| mapper              | `(t: T) => K`            | Yes      | _none_  | Function to apply to each element in items                                         |
+| similarityFunction  | `(a: K, b: K) => number` | Yes      | _none_  | Function to compare mapped items                                                   |
+| similarityThreshold | `number`                 | Yes      | _none_  | Similar items that are greater than or equal to the threshold are grouped together |
