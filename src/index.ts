@@ -21,12 +21,16 @@ function groupSimilar<T, K>(options: Options<T, K>): T[][] {
   const set = disjointSet();
   items.forEach((item) => set.add(item));
 
+  const mappedItems = options.items.map(options.mapper);
+
   for (let i = 0; i < items.length - 1; ++i) {
-    const value = options.mapper(items[i].item);
     for (let j = i + 1; j < items.length; ++j) {
-      const compareValue = options.mapper(items[j].item);
+      if (set.connected(items[i], items[j])) {
+        continue;
+      }
+
       if (
-        options.similarityFunction(value, compareValue) >=
+        options.similarityFunction(mappedItems[i], mappedItems[j]) >=
         options.similarityThreshold
       ) {
         set.union(items[i], items[j]);
