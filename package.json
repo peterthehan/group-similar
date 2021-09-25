@@ -1,0 +1,77 @@
+{
+  "name": "group-similar",
+  "version": "0.0.1",
+  "description": "Group similar items together.",
+  "keywords": [
+    "group",
+    "similar",
+    "similarity",
+    "disjoint-set",
+    "union-find",
+    "merge-find",
+    "edit-distance"
+  ],
+  "homepage": "https://github.com/peterthehan/group-similar",
+  "bugs": {
+    "url": "https://github.com/peterthehan/group-similar/issues",
+    "email": "peter.han.9493@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peterthehan/group-similar"
+  },
+  "funding": [
+    {
+      "type": "GitHub",
+      "url": "https://github.com/sponsors/peterthehan"
+    },
+    {
+      "type": "Patreon",
+      "url": "https://www.patreon.com/peterthehan"
+    },
+    {
+      "type": "PayPal",
+      "url": "https://paypal.me/peterthehan"
+    },
+    {
+      "type": "Ko-fi",
+      "url": "https://ko-fi.com/peterthehan"
+    },
+    {
+      "type": "Venmo",
+      "url": "https://venmo.com/peterthehan"
+    }
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Peter Han",
+    "email": "peter.han.9493@gmail.com",
+    "url": "https://github.com/peterthehan"
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "src/**"
+  ],
+  "scripts": {
+    "build": "rm -rf ./dist && npx tsc",
+    "lint": "npx eslint --fix .",
+    "test": "npx jest --coverage --coverageDirectory='coverage'"
+  },
+  "dependencies": {
+    "disjoint-set": "^1.1.8"
+  },
+  "devDependencies": {
+    "@tsconfig/recommended": "^1.0.1",
+    "@types/jest": "^27.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.28.5",
+    "@typescript-eslint/parser": "^4.28.5",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "fastest-levenshtein": "^1.0.12",
+    "jest": "^27.0.6",
+    "prettier": "^2.3.2",
+    "ts-jest": "^27.0.5",
+    "typescript": "^4.3.5"
+  }
+}
