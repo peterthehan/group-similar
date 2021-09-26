@@ -1,16 +1,19 @@
 {
   "name": "group-similar",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Group similar items together.",
   "keywords": [
+    "cluster",
+    "disjoint-set",
+    "edit-distance",
     "group",
+    "group-similar",
+    "grouping",
+    "levenshtein",
+    "merge-find",
     "similar",
     "similarity",
-    "disjoint-set",
-    "union-find",
-    "merge-find",
-    "edit-distance",
-    "levenshtein"
+    "union-find"
   ],
   "homepage": "https://github.com/peterthehan/group-similar",
   "bugs": {

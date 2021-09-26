@@ -117,9 +117,9 @@ groupSimilar(options);
 
 | Property            | Type                     | Required | Default | Description                                                                        |
 | ------------------- | ------------------------ | -------- | ------- | ---------------------------------------------------------------------------------- |
-| items               | `T[]`                    | Yes      | _none_  | List of items                                                                      |
-| mapper              | `(t: T) => K`            | Yes      | _none_  | Function to apply to each element in items                                         |
-| similarityFunction  | `(a: K, b: K) => number` | Yes      | _none_  | Function to compare mapped items                                                   |
+| items               | `T[]`                    | Yes      | _none_  | Array of items to group                                                            |
+| mapper              | `(t: T) => K`            | Yes      | _none_  | Function to apply to each element in items prior to checking similarity            |
+| similarityFunction  | `(a: K, b: K) => number` | Yes      | _none_  | Function to compare similarity between mapped items                                |
 | similarityThreshold | `number`                 | Yes      | _none_  | Similar items that are greater than or equal to the threshold are grouped together |
 
 ### Return value
