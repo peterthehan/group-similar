@@ -4,6 +4,10 @@
 
 Group similar items together.
 
+Runtime complexity is `O(N^2 * (M + α(N)))`, where `N` is the number of elements in `items`, `M` is the runtime complexity of the `similarityFunction`, and `α(N)` is the [inverse Ackermann function](https://en.wikipedia.org/wiki/Disjoint-set_data_structure#Time_complexity) (amortized constant time for all practical purposes).
+
+Space complexity is `O(N)`.
+
 ## Getting started
 
 ```
@@ -103,8 +107,9 @@ groupSimilar({
 
 ## Syntax
 
-```js
+```ts
 groupSimilar(options);
+groupSimilar({ items, mapper, similarityFunction, similarityThreshold });
 ```
 
 ### Parameters
@@ -115,13 +120,13 @@ groupSimilar(options);
 
 #### Options
 
-| Property            | Type                     | Required | Default | Description                                                                        |
-| ------------------- | ------------------------ | -------- | ------- | ---------------------------------------------------------------------------------- |
-| items               | `T[]`                    | Yes      | _none_  | Array of items to group                                                            |
-| mapper              | `(t: T) => K`            | Yes      | _none_  | Function to apply to each element in items prior to checking similarity            |
-| similarityFunction  | `(a: K, b: K) => number` | Yes      | _none_  | Function to compare similarity between mapped items                                |
-| similarityThreshold | `number`                 | Yes      | _none_  | Similar items that are greater than or equal to the threshold are grouped together |
+| Property            | Type                     | Required | Default | Description                                                                                      |
+| ------------------- | ------------------------ | -------- | ------- | ------------------------------------------------------------------------------------------------ |
+| items               | `T[]`                    | Yes      | _none_  | Array of items to group                                                                          |
+| mapper              | `(t: T) => K`            | Yes      | _none_  | Function to apply to each element in items prior to measuring similarity                         |
+| similarityFunction  | `(a: K, b: K) => number` | Yes      | _none_  | Function to measure similarity between mapped items                                              |
+| similarityThreshold | `number`                 | Yes      | _none_  | Threshold at which items whose similarity value is greater than or equal it are grouped together |
 
 ### Return value
 
-The **return value** is `T[][]`.
+The **return value** is a new nested array of type `T[][]` containing elements of `items` grouped by similarity. If there are no elements in `items`, an empty array will be returned.
