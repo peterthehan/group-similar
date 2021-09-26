@@ -1,6 +1,6 @@
 {
   "name": "group-similar",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Group similar items together.",
   "keywords": [
     "group",
@@ -59,7 +59,7 @@
     "test": "npx jest --coverage --coverageDirectory='coverage'"
   },
   "dependencies": {
-    "disjoint-set": "^1.1.8"
+    "mnemonist": "^0.38.4"
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.1",
