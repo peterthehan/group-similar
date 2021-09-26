@@ -1,9 +1,4 @@
-import disjointSet from "disjoint-set";
-
-type ExtractedItem<T> = {
-  item: T;
-  _disjointSetId: number;
-};
+import StaticDisjointSet from "mnemonist/static-disjoint-set";
 
 type Options<T, K> = {
   items: T[];
@@ -17,15 +12,12 @@ function groupSimilar<T, K>(options: Options<T, K>): T[][] {
     return [];
   }
 
-  const items = options.items.map((item) => ({ item }));
-  const set = disjointSet();
-  items.forEach((item) => set.add(item));
-
+  const sets = new StaticDisjointSet(options.items.length);
   const mappedItems = options.items.map(options.mapper);
 
-  for (let i = 0; i < items.length - 1; ++i) {
-    for (let j = i + 1; j < items.length; ++j) {
-      if (set.connected(items[i], items[j])) {
+  for (let i = 0; i < options.items.length - 1; ++i) {
+    for (let j = i + 1; j < options.items.length; ++j) {
+      if (sets.connected(i, j)) {
         continue;
       }
 
@@ -33,14 +25,12 @@ function groupSimilar<T, K>(options: Options<T, K>): T[][] {
         options.similarityFunction(mappedItems[i], mappedItems[j]) >=
         options.similarityThreshold
       ) {
-        set.union(items[i], items[j]);
+        sets.union(i, j);
       }
     }
   }
 
-  return (set.extract() as ExtractedItem<T>[][]).map((group) =>
-    group.map(({ item }) => item)
-  );
+  return sets.compile().map((set) => set.map((index) => options.items[index]));
 }
 
 export { groupSimilar };
