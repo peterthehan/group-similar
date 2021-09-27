@@ -120,12 +120,12 @@ groupSimilar({ items, mapper, similarityFunction, similarityThreshold });
 
 #### Options
 
-| Property            | Type                     | Required | Default | Description                                                                                      |
-| ------------------- | ------------------------ | -------- | ------- | ------------------------------------------------------------------------------------------------ |
-| items               | `T[]`                    | Yes      | _none_  | Array of items to group                                                                          |
-| mapper              | `(t: T) => K`            | Yes      | _none_  | Function to apply to each element in items prior to measuring similarity                         |
-| similarityFunction  | `(a: K, b: K) => number` | Yes      | _none_  | Function to measure similarity between mapped items                                              |
-| similarityThreshold | `number`                 | Yes      | _none_  | Threshold at which items whose similarity value is greater than or equal it are grouped together |
+| Property            | Type                     | Required | Default | Description                                                                                         |
+| ------------------- | ------------------------ | -------- | ------- | --------------------------------------------------------------------------------------------------- |
+| items               | `T[]`                    | Yes      | _none_  | Array of items to group                                                                             |
+| mapper              | `(t: T) => K`            | Yes      | _none_  | Function to apply to each element in items prior to measuring similarity                            |
+| similarityFunction  | `(a: K, b: K) => number` | Yes      | _none_  | Function to measure similarity between mapped items                                                 |
+| similarityThreshold | `number`                 | Yes      | _none_  | Threshold at which items whose similarity value is greater than or equal to it are grouped together |
 
 ### Return value
 

@@ -1,18 +1,25 @@
 {
   "name": "group-similar",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Group similar items together.",
   "keywords": [
+    "algorithm",
     "cluster",
+    "compare",
+    "comparison",
     "disjoint-set",
     "edit-distance",
+    "fuzzy",
     "group",
     "group-similar",
     "grouping",
     "levenshtein",
+    "match",
+    "matching",
     "merge-find",
     "similar",
     "similarity",
+    "string",
     "union-find"
   ],
   "homepage": "https://github.com/peterthehan/group-similar",
@@ -59,6 +66,7 @@
   "scripts": {
     "build": "rm -rf ./dist && npx tsc",
     "lint": "npx eslint --fix .",
+    "prepublishOnly": "npm run lint && npm run build && npm test",
     "test": "npx jest --coverage --coverageDirectory='coverage'"
   },
   "dependencies": {
