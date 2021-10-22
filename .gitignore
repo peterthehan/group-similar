@@ -1,3 +1,5 @@
 coverage/
 dist/
 node_modules/
+test/benchmark.js
+test/data.json
