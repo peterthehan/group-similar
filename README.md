@@ -131,7 +131,7 @@ groupSimilar({ items, mapper, similarityFunction, similarityThreshold });
 
 The **return value** is a new nested array of type `T[][]` containing elements of `items` grouped by similarity. If there are no elements in `items`, an empty array will be returned.
 
-## Benchmarks
+## Benchmark
 
 ```
 group-similar (N = 4) x 911,054 ops/sec ±2.28% (87 runs sampled)
