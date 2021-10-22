@@ -64,6 +64,7 @@
     "dist/**"
   ],
   "scripts": {
+    "benchmark": "npm run build && npx tsc ./test/benchmark.ts && node ./test/benchmark.js",
     "build": "rm -rf ./dist && npx tsc",
     "lint": "npx eslint --fix .",
     "prepublishOnly": "npm run lint && npm run build && npm test",
@@ -74,15 +75,18 @@
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.1",
+    "@types/benchmark": "^2.1.1",
     "@types/jest": "^27.0.2",
     "@typescript-eslint/eslint-plugin": "^4.28.5",
     "@typescript-eslint/parser": "^4.28.5",
+    "benchmark": "^2.1.4",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "fastest-levenshtein": "^1.0.12",
     "jest": "^27.0.6",
     "prettier": "^2.3.2",
+    "set-clustering": "^1.1.0",
     "ts-jest": "^27.0.5",
     "typescript": "^4.3.5"
   }
