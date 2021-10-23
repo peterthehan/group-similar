@@ -133,25 +133,9 @@ The **return value** is a new nested array of type `T[][]` containing elements o
 
 ## Benchmark
 
-```
-group-similar (N = 4) x 911,054 ops/sec ±2.28% (87 runs sampled)
-set-clustering (N = 4) x 356,690 ops/sec ±2.09% (88 runs sampled)
-group-similar (N = 8) x 326,711 ops/sec ±3.99% (81 runs sampled)
-set-clustering (N = 8) x 122,177 ops/sec ±2.26% (86 runs sampled)
-group-similar (N = 16) x 100,390 ops/sec ±3.50% (81 runs sampled)
-set-clustering (N = 16) x 36,424 ops/sec ±2.86% (87 runs sampled)
-group-similar (N = 32) x 30,904 ops/sec ±1.42% (89 runs sampled)
-set-clustering (N = 32) x 7,998 ops/sec ±1.67% (88 runs sampled)
-group-similar (N = 64) x 7,812 ops/sec ±1.76% (90 runs sampled)
-set-clustering (N = 64) x 1,974 ops/sec ±2.37% (88 runs sampled)
-group-similar (N = 128) x 1,983 ops/sec ±1.75% (93 runs sampled)
-set-clustering (N = 128) x 523 ops/sec ±2.36% (88 runs sampled)
-group-similar (N = 256) x 428 ops/sec ±2.35% (86 runs sampled)
-set-clustering (N = 256) x 119 ops/sec ±3.79% (75 runs sampled)
-group-similar (N = 512) x 110 ops/sec ±1.38% (80 runs sampled)
-set-clustering (N = 512) x 32.84 ops/sec ±1.31% (57 runs sampled)
-group-similar (N = 1024) x 25.60 ops/sec ±4.37% (45 runs sampled)
-set-clustering (N = 1024) x 6.24 ops/sec ±7.46% (20 runs sampled)
-```
+Benchmark test results where `N` is the length of the string array and `5` is the length of every randomly generated string in the array, higher `ops/sec` is better.
 
-Benchmark test results where `N` is the length of the string array and `5` is the length of every string in the array, higher `ops/sec` is better.
+| Library        | N = 4  | N = 8  | N = 16 | N = 32 | N = 64 | N = 128 | N = 256 | N = 512 | N = 1024 |
+| -------------- | ------ | ------ | ------ | ------ | ------ | ------- | ------- | ------- | -------- |
+| group-similar  | 929451 | 331743 | 100016 | 25247  | 6969   | 1732    | 437     | 109     | 26       |
+| set-clustering | 348322 | 113104 | 34663  | 7571   | 2106   | 541     | 135     | 34      | 7        |
