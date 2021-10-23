@@ -14,72 +14,87 @@ function levenshteinSimilarityFunction(a: string, b: string): number {
     : 1 - distance(a, b) / Math.max(a.length, b.length);
 }
 
-function randomString(stringLength: number): string {
+function getRandomString(stringLength: number): string {
   const characters =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  const chars = [];
-  for (let i = 0; i < stringLength; ++i) {
-    chars.push(
-      characters.charAt(Math.floor(Math.random() * characters.length))
-    );
-  }
-  return chars.join("");
+
+  return Array(stringLength)
+    .fill(0)
+    .map(() => characters.charAt(Math.floor(Math.random() * characters.length)))
+    .join("");
 }
 
-function randomStrings(stringLength, arrayLength) {
-  const strings = [];
-  for (let i = 0; i < arrayLength; ++i) {
-    strings.push(randomString(stringLength));
+function getRandomStrings(stringLength: number, arrayLength: number): string[] {
+  return Array(arrayLength)
+    .fill(0)
+    .map(() => getRandomString(stringLength));
+}
+
+function getData(stringLength: number, arrayLengths: number[]): string[][] {
+  if (fs.existsSync("./test/data.json")) {
+    return JSON.parse(fs.readFileSync("./test/data.json", "utf8"));
   }
-  return strings;
+
+  const data = arrayLengths.map((arrayLength) =>
+    getRandomStrings(stringLength, arrayLength)
+  );
+
+  fs.writeFileSync("./test/data.json", JSON.stringify(data));
+
+  return data;
 }
 
 const similarityThreshold = 0.5;
 const stringLength = 5;
-
-let data: string[][];
-if (fs.existsSync("./test/data.json")) {
-  data = JSON.parse(fs.readFileSync("./test/data.json", "utf8"));
-} else {
-  data = [
-    randomStrings(stringLength, 4),
-    randomStrings(stringLength, 8),
-    randomStrings(stringLength, 16),
-    randomStrings(stringLength, 32),
-    randomStrings(stringLength, 64),
-    randomStrings(stringLength, 128),
-    randomStrings(stringLength, 256),
-    randomStrings(stringLength, 512),
-    randomStrings(stringLength, 1024),
-  ];
-
-  fs.writeFileSync("./test/data.json", JSON.stringify(data));
-}
+const arrayLengths = [4, 8, 16, 32, 64, 128, 256, 512, 1024];
 
 const suite = new Benchmark.Suite();
 
-data.forEach((d) => {
+getData(stringLength, arrayLengths).forEach((data) => {
   suite
-    .add(`group-similar (N = ${d.length})`, () => {
+    .add(`(N = ${data.length}) group-similar`, () => {
       groupSimilar({
-        items: d,
+        items: data,
         mapper: identityMapper,
         similarityFunction: levenshteinSimilarityFunction,
         similarityThreshold,
       });
     })
-    .add(`set-clustering (N = ${d.length})`, () => {
-      cluster(d, levenshteinSimilarityFunction).similarGroups(
+    .add(`(N = ${data.length}) set-clustering`, () => {
+      cluster(data, levenshteinSimilarityFunction).similarGroups(
         similarityThreshold
       );
     });
 });
 
+const results = {};
 suite
-  .on("cycle", (event) => console.log(String(event.target)))
-  .on("complete", () =>
+  .on("cycle", (event) => {
+    console.log(String(event.target));
+
+    const name = event.target.name.replace(/^\(N = \d+\) +/, "");
+    if (!(name in results)) {
+      results[name] = [name];
+    }
+
+    results[name].push(Math.round(event.target.hz));
+  })
+  .on("complete", () => {
+    const header = [
+      "Library",
+      ...arrayLengths.map((arrayLength) => `N = ${arrayLength}`),
+    ];
+
+    const table = [
+      header,
+      Array(header.length).fill("-"),
+      ...(Object.values(results) as string[][]),
+    ]
+      .map((row) => `|${row.join("|")}|`)
+      .join("\n");
+
     console.log(
-      `\nBenchmark test results where \`N\` is the length of the string array and \`${stringLength}\` is the length of every string in the array, higher \`ops/sec\` is better.`
-    )
-  )
+      `\nBenchmark test results where \`N\` is the length of the string array and \`${stringLength}\` is the length of every randomly generated string in the array, higher \`ops/sec\` is better.\n\n${table}`
+    );
+  })
   .run({ async: true });
