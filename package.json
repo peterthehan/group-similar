@@ -64,7 +64,7 @@
     "dist/**"
   ],
   "scripts": {
-    "benchmark": "npm run build && npx tsc ./test/benchmark.ts && node ./test/benchmark.js",
+    "benchmark": "npx tsc ./test/benchmark.ts && node ./test/benchmark.js",
     "build": "rm -rf ./dist && npx tsc",
     "lint": "npx eslint --fix .",
     "prepublishOnly": "npm run lint && npm run build && npm test",
