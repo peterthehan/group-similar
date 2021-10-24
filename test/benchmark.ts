@@ -15,9 +15,6 @@ function levenshteinSimilarityFunction(a: string, b: string): number {
 }
 
 function getRandomString(stringLength: number): string {
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
   return Array(stringLength)
     .fill(0)
     .map(() => characters.charAt(Math.floor(Math.random() * characters.length)))
@@ -44,9 +41,10 @@ function getData(stringLength: number, arrayLengths: number[]): string[][] {
   return data;
 }
 
+const characters = "0123456789";
 const similarityThreshold = 0.5;
 const stringLength = 5;
-const arrayLengths = [4, 8, 16, 32, 64, 128, 256, 512, 1024];
+const arrayLengths = [16, 32, 64, 128, 256, 512, 1024, 2048];
 
 const suite = new Benchmark.Suite();
 
@@ -80,21 +78,14 @@ suite
     results[name].push(Math.round(event.target.hz));
   })
   .on("complete", () => {
-    const header = [
-      "Library",
-      ...arrayLengths.map((arrayLength) => `N=${arrayLength}`),
-    ];
-
     const table = [
-      header,
-      Array(header.length).fill("-"),
+      ["Library", ...arrayLengths.map((arrayLength) => `N=${arrayLength}`)],
+      Array(arrayLengths.length + 1).fill("-"),
       ...(Object.values(results) as string[][]),
     ]
       .map((row) => `|${row.join("|")}|`)
       .join("\n");
 
-    console.log(
-      `\nBenchmark test results where \`N\` is the length of the string array and \`${stringLength}\` is the length of every randomly generated string in the array, higher \`ops/sec\` is better.\n\n${table}`
-    );
+    console.log(table);
   })
   .run({ async: true });
