@@ -135,7 +135,7 @@ The **return value** is a new nested array of type `T[][]` containing elements o
 
 Benchmark test results where `N` is the length of the string array and `5` is the length of every randomly generated string in the array, higher `ops/sec` is better.
 
-| Library        | N = 4  | N = 8  | N = 16 | N = 32 | N = 64 | N = 128 | N = 256 | N = 512 | N = 1024 |
-| -------------- | ------ | ------ | ------ | ------ | ------ | ------- | ------- | ------- | -------- |
-| group-similar  | 929451 | 331743 | 100016 | 25247  | 6969   | 1732    | 437     | 109     | 26       |
-| set-clustering | 348322 | 113104 | 34663  | 7571   | 2106   | 541     | 135     | 34      | 7        |
+| Library        | N=4    | N=8    | N=16   | N=32  | N=64 | N=128 | N=256 | N=512 | N=1024 |
+| -------------- | ------ | ------ | ------ | ----- | ---- | ----- | ----- | ----- | ------ |
+| group-similar  | 929451 | 331743 | 100016 | 25247 | 6969 | 1732  | 437   | 109   | 26     |
+| set-clustering | 348322 | 113104 | 34663  | 7571  | 2106 | 541   | 135   | 34    | 7      |

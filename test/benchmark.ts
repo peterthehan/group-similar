@@ -52,7 +52,7 @@ const suite = new Benchmark.Suite();
 
 getData(stringLength, arrayLengths).forEach((data) => {
   suite
-    .add(`(N = ${data.length}) group-similar`, () => {
+    .add(`(N=${data.length}) group-similar`, () => {
       groupSimilar({
         items: data,
         mapper: identityMapper,
@@ -60,7 +60,7 @@ getData(stringLength, arrayLengths).forEach((data) => {
         similarityThreshold,
       });
     })
-    .add(`(N = ${data.length}) set-clustering`, () => {
+    .add(`(N=${data.length}) set-clustering`, () => {
       cluster(data, levenshteinSimilarityFunction).similarGroups(
         similarityThreshold
       );
@@ -72,7 +72,7 @@ suite
   .on("cycle", (event) => {
     console.log(String(event.target));
 
-    const name = event.target.name.replace(/^\(N = \d+\) +/, "");
+    const name = event.target.name.replace(/^\(N=\d+\) +/, "");
     if (!(name in results)) {
       results[name] = [name];
     }
@@ -82,7 +82,7 @@ suite
   .on("complete", () => {
     const header = [
       "Library",
-      ...arrayLengths.map((arrayLength) => `N = ${arrayLength}`),
+      ...arrayLengths.map((arrayLength) => `N=${arrayLength}`),
     ];
 
     const table = [
