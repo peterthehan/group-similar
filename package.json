@@ -1,6 +1,6 @@
 {
   "name": "group-similar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Group similar items together.",
   "keywords": [
     "algorithm",
@@ -71,16 +71,16 @@
     "test": "npx jest --coverage --coverageDirectory='coverage'"
   },
   "dependencies": {
-    "mnemonist": "^0.38.4"
+    "mnemonist": "^0.39.0"
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.1",
     "@types/benchmark": "^2.1.1",
     "@types/jest": "^27.0.2",
-    "@typescript-eslint/eslint-plugin": "^4.28.5",
-    "@typescript-eslint/parser": "^4.28.5",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
     "benchmark": "^2.1.4",
-    "eslint": "^7.32.0",
+    "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "fastest-levenshtein": "^1.0.12",
@@ -89,5 +89,8 @@
     "set-clustering": "^1.1.0",
     "ts-jest": "^27.0.5",
     "typescript": "^4.3.5"
+  },
+  "engines": {
+    "node": "^12.22 || ^14 || >=16"
   }
 }
