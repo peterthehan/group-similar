@@ -137,7 +137,7 @@ Benchmark test results where `N` is the number of items being grouped, higher `o
 
 | Library        | N=16  | N=32  | N=64 | N=128 | N=256 | N=512 | N=1024 | N=2048 |
 | -------------- | ----- | ----- | ---- | ----- | ----- | ----- | ------ | ------ |
-| group-similar  | 90968 | 22451 | 5576 | 1437  | 422   | 165   | 69     | 25     |
-| set-clustering | 28947 | 6731  | 1703 | 444   | 110   | 27    | 6      | 1      |
+| group-similar  | 86867 | 17538 | 6067 | 1594  | 444   | 171   | 75     | 27     |
+| set-clustering | 28506 | 6258  | 1831 | 455   | 121   | 30    | 6      | 1      |
 
 Benchmark configuration details can be found [here](./test/benchmark.ts).
