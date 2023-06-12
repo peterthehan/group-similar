@@ -1,7 +1,8 @@
-import * as fs from "fs";
 import * as Benchmark from "benchmark";
 import { distance } from "fastest-levenshtein";
+import * as fs from "fs";
 import * as cluster from "set-clustering";
+
 import { groupSimilar } from "../dist/index";
 
 function identityMapper<T>(i: T): T {

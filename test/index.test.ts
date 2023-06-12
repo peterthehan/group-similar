@@ -1,4 +1,5 @@
 import { distance } from "fastest-levenshtein";
+
 import { groupSimilar } from "../src/index";
 
 function identityMapper<T>(i: T): T {
